@@ -17,5 +17,5 @@ setuptools.setup(
     },
     license='UPC',
     packages=['bw_activity_replacement'],
-    install_requires=['brightway2', 'presamples', 'pandas', 'numpy', 'matplotlib'],
+    install_requires=[],
 )
