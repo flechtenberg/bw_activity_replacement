@@ -21,7 +21,6 @@ config = {
                 "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Ecosystems', 'Aggregated', 'Egalitarian')",
                 "('IPCC 2013', 'climate change', 'GWP 100a')"],
     'new activity': "('ecoinvent 3.8_cutoff_ecoSpold02', 'a8091dd717a1f179635d35cce1d6511c')", # methanol production, from synthetic gas	methanol, from biomass	RoW
-    #'new activity': 'H2_fromPE+PP+PS | 99.91mole% purity | APOS, U | csalah',
     'reference product': ["methanol"],
     'folder': 'Methanol_from_Biomass',
     'level': 2,
@@ -41,7 +40,6 @@ config = {
                 "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Ecosystems', 'Aggregated', 'Egalitarian')",
                 "('IPCC 2013', 'climate change', 'GWP 100a')"],
     'new activity': "('ecoinvent 3.8_cutoff_ecoSpold02', '306de5beb6b3f4f770057eceabcd7ae1')", # electricity production, solar thermal parabolic trough, 50 MW	electricity, high voltage	ES
-    #'new activity': 'H2_fromPE+PP+PS | 99.91mole% purity | APOS, U | csalah',
     'reference product': ["electricity, high voltage"],
     'folder': 'Electricity_from_CSP_ES',
     'level': 2,
@@ -69,7 +67,6 @@ config = {
                 "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Ecosystems', 'Aggregated', 'Egalitarian')",
                 "('IPCC 2013', 'climate change', 'GWP 100a')"],
     'new activity': "('ecoinvent 3.8_cutoff_ecoSpold02', '204d878220d042ce59dd0e3463976ec3')", # esterification of soybean oil	fatty acid methyl ester	BR
-    #'new activity': 'H2_fromPE+PP+PS | 99.91mole% purity | APOS, U | csalah',
     'reference product': ["diesel, low-sulfur"],
     'folder': 'Diesel from Soy',
     'level': 2,
