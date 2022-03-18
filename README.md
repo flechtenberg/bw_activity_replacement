@@ -6,6 +6,8 @@ Apply the activity replacement in brightway 2.
 
 Below you can find 3 examples that should compile properly if you have created a database called "Test" and imported the 'ecoinvent 3.8_cutoff_ecoSpold02' dataset.
 
+Examples 2 and 3 are using the Recipe2016 method which, in case it is desired, needs to be installed and bugfixed manually. 
+
 ```python
 from bw_activity_replacement import market_penetration as mp
 
@@ -13,14 +15,13 @@ from bw_activity_replacement import market_penetration as mp
 
 config = {
     'db': 'ecoinvent 3.8_cutoff_ecoSpold02',
-    'project': 'Test',
+    'project': 'Import',
     'activities': ["('ecoinvent 3.8_cutoff_ecoSpold02', '0a0cd0ce99d930cc1a22a4b98a1cefe9')",  # market for methanol	methanol	GLO
                    ],
-    'methods': ["('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Resources', 'Aggregated', 'Egalitarian')",
-                "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Human health', 'Aggregated', 'Egalitarian')",
-                "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Ecosystems', 'Aggregated', 'Egalitarian')",
-                "('IPCC 2013', 'climate change', 'GWP 100a')"],
+    'methods': ["('IPCC 2013', 'climate change', 'GWP 100a')",
+                ],
     'new activity': "('ecoinvent 3.8_cutoff_ecoSpold02', 'a8091dd717a1f179635d35cce1d6511c')", # methanol production, from synthetic gas	methanol, from biomass	RoW
+    #'new activity': 'H2_fromPE+PP+PS | 99.91mole% purity | APOS, U | csalah',
     'reference product': ["methanol"],
     'folder': 'Methanol_from_Biomass',
     'level': 2,
