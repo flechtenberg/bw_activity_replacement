@@ -4,7 +4,7 @@ Apply the activity replacement in brightway 2.
 
 ## Usage
 
-The documentation will be updated for a general example that can be applied without importing the hydrogen process.
+Below you can find 3 examples that should compile properly if you have created a database called "Test" and imported the 'ecoinvent 3.8_cutoff_ecoSpold02' dataset.
 
 ```python
 from market_penetration import perform_replacement
