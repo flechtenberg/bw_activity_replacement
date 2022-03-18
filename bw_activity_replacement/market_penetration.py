@@ -3,7 +3,6 @@ import sys
 
 import presamples as ps
 import brightway2 as bw
-from functions import *
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
