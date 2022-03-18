@@ -1,4 +1,6 @@
 import os
+import sys
+
 import presamples as ps
 import brightway2 as bw
 from functions import *
@@ -111,6 +113,7 @@ def create_bar_plots(old, new, xlabel, pattern, folder, name, top_n):
         ax2.barh(y_pos, change_sorted[-top_n::], edgecolor='black', color=colors_sorted[-top_n::])
         ax2.set_yticks(y_pos, xlabel_sorted[-top_n::])
     ax2.set_ylim((0, top_n))
+    ax2.yaxis.tick_right()
     ax2.set_xlabel(name + ' [%]')
     fig2.savefig(folder + name + '_sorted.png', bbox_inches='tight', dpi=300)
     return
@@ -197,9 +200,17 @@ def perform_replacement(config):
     :return: ---
     '''
     # Set the project and database
-    bw.projects.set_current(config['project'])
-    eidb = bw.Database(config['db'])
-    print('Perform a replacement in the Ecoinvent database: ' + config['db'] + '\n')
+    if config['project'] in bw.projects:
+        bw.projects.set_current(config['project'])
+    else:
+        print('Selected project does not exist. Please create project and proceed with the assessment.')
+        sys.exit()
+    if config['db'] in bw.databases:
+        eidb = bw.Database(config['db'])
+        print('Perform a replacement in the Ecoinvent database: ' + config['db'] + '\n')
+    else:
+        print('Selected database does not exist. Please create database and proceed with the assessment.')
+        sys.exit()
 
     # Retrieve the activities
     activity = []
@@ -214,16 +225,16 @@ def perform_replacement(config):
     methods = []
     for meth in config['methods']:
         methods = methods + [m for m in bw.methods if str(m) == meth]
-    print('The LCIA methods to be evaluated are: ')
+    print('\nThe LCIA methods to be evaluated are: ')
     for meth in methods:
         print(meth)
 
     # Define the product system
-    level, pattern = get_level_pattern(activity, 2)
+    level, pattern = get_level_pattern(activity, config['level'])
     prod_sys = [{act[0].key: 1} for act in level]
 
     # Define the exchange that should be altered
-    new_activity = [act for act in eidb if config['new activity'] in act['name']][0]
+    new_activity = [act for act in eidb if str(act.key) == config['new activity']][0]
 
     # Define the list of activities that should be exchanged based on the reference product.
     replace = []
@@ -272,14 +283,25 @@ def perform_replacement(config):
     print('Loading the data for BAU and altered case ... \n')
     NEW_results = pd.read_excel(os.getcwd() + '\data\Altered.xlsx')
     NEW_results.drop_duplicates(subset='Activity', inplace=True)
-    NEW_results.sort_values(by='Activity', inplace=True)
+    NEW_results.sort_values(by=['Activity'], ascending=False, inplace=True)
+
 
     BAU_results = pd.read_excel(os.getcwd() + '\data\BAU.xlsx')
     BAU_results.drop_duplicates(subset='Activity', inplace=True)
-    BAU_results.sort_values(by='Activity', inplace=True)
+    BAU_results.sort_values(by=['Activity'], ascending=False, inplace=True)
+
     print('Done. \n')
 
     print('Proceed with creating the images ... \n')
-    folder = os.getcwd() + r'/Results/' + config['folder'] + r'/image_'
+    path = os.getcwd() + r'/Results/' + config['folder']
+    folder = path + r'/image_'
+
+    # Check whether the specified path exists or not
+    isExist = os.path.exists(path)
+    if not isExist:
+        # Create a new directory because it does not exist
+        os.makedirs(path)
+        print("The new directory is created!")
+
     for method in methods:
-        create_bar_plots(BAU_results[str(method)], NEW_results[str(method)], NEW_results["Level_Pattern"], NEW_results["Pattern"], folder, str(method), 30)
+        create_bar_plots(BAU_results[str(method)], NEW_results[str(method)], NEW_results["Level_Pattern"], NEW_results["Pattern"], folder, str(method), config['n_top'])
