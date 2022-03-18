@@ -2,6 +2,16 @@
 
 Apply the activity replacement in brightway 2.
 
+## Installation
+You need to make sure that "git" is installed:
+```python
+conda install git
+```
+Then you can install the package via pip:
+```python
+pip install git+https://github.com/UPC-FL/bw_activity_replacement.git
+```
+
 ## Usage
 
 Below you can find 3 examples that should compile properly if you have created a database called "Test" and imported the 'ecoinvent 3.8_cutoff_ecoSpold02' dataset.
@@ -76,16 +86,5 @@ config = {
 '''
 
 mp.perform_replacement(config)
-```
-
-
-## Installation
-You need to make sure that "git" is installed:
-```python
-conda install git
-```
-Then you can install the package via pip:
-```python
-pip install git+https://github.com/UPC-FL/bw_activity_replacement.git
 ```
 
