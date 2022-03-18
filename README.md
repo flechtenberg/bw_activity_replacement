@@ -7,7 +7,7 @@ Apply the activity replacement in brightway 2.
 Below you can find 3 examples that should compile properly if you have created a database called "Test" and imported the 'ecoinvent 3.8_cutoff_ecoSpold02' dataset.
 
 ```python
-from market_penetration import perform_replacement
+import bw_activity_replacement as ar
 
 ''' Methanol Example '''
 
@@ -74,7 +74,7 @@ config = {
 }
 '''
 
-perform_replacement(config)
+ar.perform_replacement(config)
 ```
 
 
