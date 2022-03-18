@@ -79,7 +79,12 @@ ar.perform_replacement(config)
 
 
 ## Installation
-
+You need to make sure that "git" is installed:
+```python
+conda install git
+```
+Then you can install the package via pip:
+```python
 pip install git+https://github.com/UPC-FL/bw_activity_replacement.git
-
+```
 
