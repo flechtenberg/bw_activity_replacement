@@ -80,6 +80,6 @@ ar.perform_replacement(config)
 
 ## Installation
 
-`pip install git+https://github.com/UPC-FL/bw_activity_replacement.git
+pip install git+https://github.com/UPC-FL/bw_activity_replacement.git
 
 
