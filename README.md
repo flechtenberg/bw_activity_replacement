@@ -7,27 +7,77 @@ Apply the activity replacement in brightway 2.
 The documentation will be updated for a general example that can be applied without importing the hydrogen process.
 
 ```python
-from bw_activity_replacement import perform_replacement
+from market_penetration import perform_replacement
+
+''' Methanol Example '''
 
 config = {
     'db': 'ecoinvent 3.8_cutoff_ecoSpold02',
     'project': 'Test',
-    'activities': ["('ecoinvent 3.8_cutoff_ecoSpold02', 'bc08eb18034c14bba694e151a163982a')", # market for hydrogen, gaseous	hydrogen, gaseous	GLO
-                   "('ecoinvent 3.8_cutoff_ecoSpold02', 'a834063e527dafabe7d179a804a13f39')", # market for hydrogen, liquid	hydrogen, liquid	RER
-                   "('ecoinvent 3.8_cutoff_ecoSpold02', '9fed50977b761e7d6e212c93f8d4ab40')"  # market for hydrogen, liquid	hydrogen, liquid	RoW
+    'activities': ["('ecoinvent 3.8_cutoff_ecoSpold02', '0a0cd0ce99d930cc1a22a4b98a1cefe9')",  # market for methanol	methanol	GLO
                    ],
     'methods': ["('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Resources', 'Aggregated', 'Egalitarian')",
                 "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Human health', 'Aggregated', 'Egalitarian')",
                 "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Ecosystems', 'Aggregated', 'Egalitarian')",
                 "('IPCC 2013', 'climate change', 'GWP 100a')"],
-    #'new activity': 'H2_fromPE+PP+PS_with_CCS (OFC) | 99.91mole% purity | APOS, U | csalah',
-    'new activity': 'H2_fromPE+PP+PS | 99.91mole% purity | APOS, U | csalah',
-    'reference product': ["hydrogen, liquid",
-                          "hydrogen, gaseous"],
-    'folder': 'H2 without CCS'
+    'new activity': "('ecoinvent 3.8_cutoff_ecoSpold02', 'a8091dd717a1f179635d35cce1d6511c')", # methanol production, from synthetic gas	methanol, from biomass	RoW
+    #'new activity': 'H2_fromPE+PP+PS | 99.91mole% purity | APOS, U | csalah',
+    'reference product': ["methanol"],
+    'folder': 'Methanol_from_Biomass',
+    'level': 2,
+    'n_top': 20
 }
 
-perform replacement(config)
+
+''' Spain Electricity Example '''
+'''
+config = {
+    'db': 'ecoinvent 3.8_cutoff_ecoSpold02',
+    'project': 'Test',
+    'activities': ["('ecoinvent 3.8_cutoff_ecoSpold02', '473d4bb488e8f903b58203f3e5161636')",  # market for electricity, high voltage	electricity, high voltage	ES
+                   ],
+    'methods': ["('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Resources', 'Aggregated', 'Egalitarian')",
+                "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Human health', 'Aggregated', 'Egalitarian')",
+                "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Ecosystems', 'Aggregated', 'Egalitarian')",
+                "('IPCC 2013', 'climate change', 'GWP 100a')"],
+    'new activity': "('ecoinvent 3.8_cutoff_ecoSpold02', '306de5beb6b3f4f770057eceabcd7ae1')", # electricity production, solar thermal parabolic trough, 50 MW	electricity, high voltage	ES
+    #'new activity': 'H2_fromPE+PP+PS | 99.91mole% purity | APOS, U | csalah',
+    'reference product': ["electricity, high voltage"],
+    'folder': 'Electricity_from_CSP_ES',
+    'level': 2,
+    'n_top': 20
+}
+'''
+
+''' Diesel Example '''
+'''
+config = {
+    'db': 'ecoinvent 3.8_cutoff_ecoSpold02',
+    'project': 'Test',
+    'activities': ["('ecoinvent 3.8_cutoff_ecoSpold02', 'd268c770c9a0de5ee694b8e3b9bcaf9a')",  # market for diesel, low-sulfur	diesel, low-sulfur	Europe without Switzerland
+                   "('ecoinvent 3.8_cutoff_ecoSpold02', '7b7a4924797fd35fcdd5882e002c43a6')",  # market for diesel, low-sulfur	diesel, low-sulfur	PE
+                   "('ecoinvent 3.8_cutoff_ecoSpold02', '9346ab267ad2c0ae46b0b02419d92e87')",  # market for diesel, low-sulfur	diesel, low-sulfur	IN
+                   "('ecoinvent 3.8_cutoff_ecoSpold02', '509afdd65aa82305d4a86c76dd7fe459'",  # market for diesel, low-sulfur	diesel, low-sulfur	CH
+                   "('ecoinvent 3.8_cutoff_ecoSpold02', '454563ec7c59b46d34ce2d0a72099615')",  # market for diesel, low-sulfur	diesel, low-sulfur	CO
+                   "('ecoinvent 3.8_cutoff_ecoSpold02', '1772b4b7346b1b9acb7d0b572a9e75bf')",  # market for diesel, low-sulfur	diesel, low-sulfur	RoW
+                   "('ecoinvent 3.8_cutoff_ecoSpold02', '695a2c9ad1032e2156559c803d9af82f')",  # market for diesel, low-sulfur	diesel, low-sulfur	BR
+                   "('ecoinvent 3.8_cutoff_ecoSpold02', '4b07d818e70ec505c01c92640634a8d7')",  # market for diesel, low-sulfur	diesel, low-sulfur	ZA
+
+                   ],
+    'methods': ["('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Resources', 'Aggregated', 'Egalitarian')",
+                "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Human health', 'Aggregated', 'Egalitarian')",
+                "('ReCiPe 2016', '1.1 (20180117)', 'Endpoint', 'Ecosystems', 'Aggregated', 'Egalitarian')",
+                "('IPCC 2013', 'climate change', 'GWP 100a')"],
+    'new activity': "('ecoinvent 3.8_cutoff_ecoSpold02', '204d878220d042ce59dd0e3463976ec3')", # esterification of soybean oil	fatty acid methyl ester	BR
+    #'new activity': 'H2_fromPE+PP+PS | 99.91mole% purity | APOS, U | csalah',
+    'reference product': ["diesel, low-sulfur"],
+    'folder': 'Diesel from Soy',
+    'level': 2,
+    'n_top': 50
+}
+'''
+
+perform_replacement(config)
 ```
 
 
