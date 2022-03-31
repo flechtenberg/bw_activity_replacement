@@ -35,7 +35,8 @@ config = {
     'reference product': ["methanol"],
     'folder': 'Methanol_from_Biomass',
     'level': 2,
-    'n_top': 20
+    'n_top': 20,
+    'all': True
 }
 
 
@@ -54,7 +55,8 @@ config = {
     'reference product': ["electricity, high voltage"],
     'folder': 'Electricity_from_CSP_ES',
     'level': 2,
-    'n_top': 20
+    'n_top': 20,
+    'all': False
 }
 '''
 
@@ -81,7 +83,8 @@ config = {
     'reference product': ["diesel, low-sulfur"],
     'folder': 'Diesel from Soy',
     'level': 2,
-    'n_top': 50
+    'n_top': 50,
+    'all': True
 }
 '''
 
